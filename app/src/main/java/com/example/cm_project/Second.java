@@ -1,5 +1,7 @@
 package com.example.cm_project;
 
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.ContextMenu;
@@ -8,14 +10,49 @@ package com.example.cm_project;
         import android.view.MenuItem;
         import android.view.View;
         import android.widget.AdapterView;
+        import android.widget.ListView;
+        import android.widget.SimpleCursorAdapter;
         import android.widget.Toast;
 
+        import adapter.MyCursorAdapter;
+        import db.Contrato;
+        import db.DB;
+
 public class Second extends AppCompatActivity {
+
+    DB mDbHelper;
+    SQLiteDatabase db;
+    Cursor c, c_notas;
+    ListView lista;
+    MyCursorAdapter myadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        mDbHelper = new DB(this);
+        db = mDbHelper.getReadableDatabase();
+
+        lista = (ListView) findViewById(R.id.lista);
+
+        preencherLista();
+
+        registerForContextMenu(lista);
+    }
+
+    private void preencherLista() {
+
+        c = db.query(false, Contrato.Nota.TABLE_NAME, Contrato.Nota.PROJECTION,
+                null,null,
+                null, null,
+                null,null);
+
+        myadapter = new MyCursorAdapter(Second.this, c);
+
+        lista.setAdapter(myadapter);
+
+
     }
 
     @Override

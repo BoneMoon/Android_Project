@@ -30,6 +30,11 @@ public class Contrato {
 
         public static final String SQL_DROP_ENTRIES =
                 "DROP TABLE " + Nota.TABLE_NAME + ";";
+
+        /*public static final String SQL_JOINT =
+                " SELECT " + Tipo.COLUMN_TIPODESC +
+                        " FROM " + Nota.TABLE_NAME + "," + Tipo.TABLE_NAME +
+                        " WHERE " + Nota.COLUMN_ID_TIPO + " = " + Tipo._ID;*/
     }
 
     public static abstract class Tipo implements BaseColumns{
