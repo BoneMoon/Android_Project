@@ -21,6 +21,18 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("insert into " + Contrato.Tipo.TABLE_NAME + " values(2, 'trabalho');");
         db.execSQL("insert into " + Contrato.Tipo.TABLE_NAME + " values(3, 'escola');");
         db.execSQL("insert into " + Contrato.Tipo.TABLE_NAME + " values(4, 'acidente');");
+
+        db.execSQL("insert into " + Contrato.Nota.TABLE_NAME +
+                " values(1, 'Aula CM', 'Aula na segunda 13h', 3);");
+
+        db.execSQL("insert into " + Contrato.Nota.TABLE_NAME +
+                " values(2, 'Limpar a casa', 'preciso de limpar a casa', 1);");
+
+        db.execSQL("insert into " + Contrato.Nota.TABLE_NAME +
+                " values(3, 'Folga amanhã', 'tou de folga amanhã', 2);");
+
+        db.execSQL("insert into " + Contrato.Nota.TABLE_NAME +
+                " values(4, 'Acidente', 'acidente na A28', 4);");
     }
 
     @Override
