@@ -1,5 +1,6 @@
 package com.example.cm_project;
 
+        import android.content.Intent;
         import android.database.Cursor;
         import android.database.sqlite.SQLiteDatabase;
         import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,6 @@ package com.example.cm_project;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.ListView;
-        import android.widget.SimpleCursorAdapter;
         import android.widget.Toast;
 
         import adapter.MyCursorAdapter;
@@ -43,6 +43,8 @@ public class Second extends AppCompatActivity {
 
     private void preencherLista() {
 
+        //getCursor();
+
         c = db.query(false, Contrato.Nota.TABLE_NAME, Contrato.Nota.PROJECTION,
                 null,null,
                 null, null,
@@ -51,8 +53,6 @@ public class Second extends AppCompatActivity {
         myadapter = new MyCursorAdapter(Second.this, c);
 
         lista.setAdapter(myadapter);
-
-
     }
 
     @Override
@@ -67,7 +67,8 @@ public class Second extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.criar:
-                Toast.makeText(Second.this, "Criar", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Second.this, NotasActivity.class);
+                startActivity(i);
                 return  true;
 
             default:
@@ -85,16 +86,40 @@ public class Second extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int itemPosition = info.position;
+        c.moveToPosition(itemPosition);
+        int id_nota = c.getInt(c.getColumnIndex(Contrato.Nota._ID));
 
         switch (item.getItemId()){
-            case R.id.edit:
+            case R.id.editTipo:
                 Toast.makeText(Second.this, "Editado", Toast.LENGTH_SHORT).show();
                 return  true;
             case R.id.remove:
-                Toast.makeText(Second.this, "Remover", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Second.this, "Remover", Toast.LENGTH_SHORT).show();
+                deleteFromDB(id_nota);
                 return  true;
             default:
                 return  super.onContextItemSelected(item);
         }
+    }
+
+    private void deleteFromDB(int id) {
+        db.delete(Contrato.Nota.TABLE_NAME, Contrato.Nota._ID + " = ?", new String[]{id+""});
+        refresh();
+    }
+
+    public void refresh() {
+        getCursor();
+        myadapter.swapCursor(c);
+    }
+
+    private void getCursor() {
+        String sql = " select " + Contrato.Nota.TABLE_NAME + "."
+                + Contrato.Nota._ID + "," + Contrato.Tipo.TABLE_NAME
+                + " FROM " + Contrato.Nota.COLUMN_TITULO + "," + Contrato.Nota.COLUMN_DESCRICAO
+                + "," + Contrato.Tipo.COLUMN_TIPODESC + " WHERE " + Contrato.Nota.COLUMN_ID_TIPO
+                + "=" + Contrato.Tipo.TABLE_NAME + "." + Contrato.Tipo._ID;
+
+        c = db.rawQuery(sql, null);
     }
 }
