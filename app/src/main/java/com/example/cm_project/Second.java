@@ -25,6 +25,7 @@ public class Second extends AppCompatActivity {
     Cursor c, c_notas;
     ListView lista;
     MyCursorAdapter myadapter;
+    private int REQUEST_CODE_OP_1 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +69,23 @@ public class Second extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.criar:
                 Intent i = new Intent(Second.this, NotasActivity.class);
-                startActivity(i);
+                //startActivity(i);
+                startActivityForResult(i, REQUEST_CODE_OP_1);
                 return  true;
 
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == REQUEST_CODE_OP_1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+
+            }
         }
     }
 
@@ -102,6 +115,8 @@ public class Second extends AppCompatActivity {
                 return  super.onContextItemSelected(item);
         }
     }
+
+
 
     private void deleteFromDB(int id) {
         db.delete(Contrato.Nota.TABLE_NAME, Contrato.Nota._ID + " = ?", new String[]{id+""});

@@ -1,6 +1,7 @@
 package com.example.cm_project;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import db.Contrato;
 
 public class NotasActivity extends AppCompatActivity {
 
-    Second mActicity = new Second();
+    //Second mActicity = new Second();
     SQLiteDatabase db;
 
     @Override
@@ -23,6 +24,8 @@ public class NotasActivity extends AppCompatActivity {
     }
 
     public void clickAdd(View view) {
+        Intent output = new Intent();
+        //output.putExtra();
         updateList();
         finish();
     }
@@ -41,6 +44,7 @@ public class NotasActivity extends AppCompatActivity {
 
         db.insert(Contrato.Tipo.TABLE_NAME, null, cvTipo);
         db.insert(Contrato.Nota.TABLE_NAME, null, cvNota);
-        mActicity.refresh();
+        //mActicity.refresh();
+
     }
 }
