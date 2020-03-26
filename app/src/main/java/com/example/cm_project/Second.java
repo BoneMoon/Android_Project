@@ -44,12 +44,12 @@ public class Second extends AppCompatActivity {
 
     private void preencherLista() {
 
-        //getCursor();
+        getCursor();
 
-        c = db.query(false, Contrato.Nota.TABLE_NAME, Contrato.Nota.PROJECTION,
+        /*c = db.query(false, Contrato.Nota.TABLE_NAME, Contrato.Nota.PROJECTION,
                 null,null,
                 null, null,
-                null,null);
+                null,null);*/
 
         myadapter = new MyCursorAdapter(Second.this, c);
 
@@ -129,10 +129,18 @@ public class Second extends AppCompatActivity {
     }
 
     private void getCursor() {
-        String sql = " select " + Contrato.Nota.TABLE_NAME + "."
+       /* String sql = " select " + Contrato.Nota.TABLE_NAME + "."
                 + Contrato.Nota._ID + "," + Contrato.Tipo.TABLE_NAME
                 + " FROM " + Contrato.Nota.COLUMN_TITULO + "," + Contrato.Nota.COLUMN_DESCRICAO
                 + "," + Contrato.Tipo.COLUMN_TIPODESC + " WHERE " + Contrato.Nota.COLUMN_ID_TIPO
+                + "=" + Contrato.Tipo.TABLE_NAME + "." + Contrato.Tipo._ID;*/
+
+        String sql = " select " + Contrato.Nota.COLUMN_TITULO + ","
+                + Contrato.Nota.COLUMN_DESCRICAO
+                + "," + Contrato.Tipo.COLUMN_TIPODESC
+                + " FROM " + Contrato.Nota.TABLE_NAME + "."
+                + Contrato.Nota._ID + "," + Contrato.Tipo.TABLE_NAME
+                + " WHERE " + Contrato.Nota.COLUMN_ID_TIPO
                 + "=" + Contrato.Tipo.TABLE_NAME + "." + Contrato.Tipo._ID;
 
         c = db.rawQuery(sql, null);
