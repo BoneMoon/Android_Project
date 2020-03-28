@@ -37,7 +37,7 @@ public class Nota {
         return this.descricao;
     }
 
-    public String getTipo(){
+    public String getTipoDescricao(){
         return this.tipoDescricao;
     }
 }
