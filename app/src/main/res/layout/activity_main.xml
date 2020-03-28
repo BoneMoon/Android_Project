@@ -88,6 +88,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:text="Notas Pessoais"
+        android:onClick="btnNotas"
         android:textSize="20sp" />
 
 
