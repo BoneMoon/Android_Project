@@ -65,4 +65,8 @@ public class NotaListAdapter extends RecyclerView.Adapter<NotaListAdapter.NotaVi
             rowTipo = itemView.findViewById(R.id.tipoDescricao);
         }
     }
+
+    public Nota getNotaPosition(int position){
+        return mNotas.get(position);
+    }
 }

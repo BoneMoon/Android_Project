@@ -24,6 +24,14 @@ public class NotaRepository {
         new insertAsyncTask(notaDAO).execute(nota);
     }
 
+    public void deleteAll(){
+        new deleteAllNotasAsyncTask(notaDAO).execute();
+    }
+
+    public void deleteNota(Nota nota){
+        new deleteNotaAsyncTask(notaDAO).execute(nota);
+    }
+
     private class insertAsyncTask extends AsyncTask<Nota, Void, Void> {
         private NotaDAO mAsyncTaskDao;
 
@@ -33,6 +41,33 @@ public class NotaRepository {
         @Override
         protected Void doInBackground(final Nota... params) {
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private class deleteAllNotasAsyncTask extends AsyncTask<Void, Void, Void>{
+        private NotaDAO delDAO;
+
+        deleteAllNotasAsyncTask(NotaDAO dao){
+            delDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            delDAO.deleteAll();
+            return null;
+        }
+    }
+
+    private static class deleteNotaAsyncTask extends AsyncTask<Nota, Void, Void> {
+        private NotaDAO mAsyncTaskDao;
+
+        deleteNotaAsyncTask(NotaDAO dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Nota... params) {
+            mAsyncTaskDao.deleteNota(params[0]);
             return null;
         }
     }

@@ -25,4 +25,12 @@ public class NotaViewModel extends AndroidViewModel {
     public void insert(Nota nota){
         mRepository.insert(nota);
     }
+
+    public void deleteAll(){
+        mRepository.deleteAll();
+    }
+
+    public void deleteNota(Nota nota){
+        mRepository.deleteNota(nota);
+    }
 }

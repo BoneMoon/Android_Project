@@ -52,11 +52,13 @@ public abstract class NotaRoomDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            mnotaDAO.deleteAll();
+            //mnotaDAO.deleteAll();
 
+            if(mnotaDAO.getAnyNota().length < 1){
             for(int i = 0; i <= titulos.length - 1; i++){
                 Nota nota = new Nota(titulos[i], descricoes[i], tipo[i]);
                 mnotaDAO.insert(nota);
+                }
             }
             return null;
         }
