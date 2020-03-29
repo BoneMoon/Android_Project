@@ -42,6 +42,8 @@ public abstract class NotaRoomDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final NotaDAO mnotaDAO;
+
+        //Integer[] id = {1,2,3};
         String[] titulos = {"Titulo 1", "Titulo 2", "Titulo 3"};
         String[] descricoes = {"Descrição 1", "Descrição 2", "Descrição 3"};
         String[] tipo = {"Tipo 1", "Tipo 2", "Tipo 3"};

@@ -9,6 +9,9 @@ import android.support.annotation.NonNull;
 public class Nota {
 
     @PrimaryKey
+            /*(autoGenerate = true)
+    private int id;*/
+
     @NonNull
     @ColumnInfo(name = "titulo")
     private String titulo;
@@ -40,5 +43,13 @@ public class Nota {
     public String getTipoDescricao(){
         return this.tipoDescricao;
     }
+
+    /*public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }*/
 }
 

@@ -14,6 +14,7 @@ import com.example.cm_project.R;
 import java.util.List;
 
 public class NotaListAdapter extends RecyclerView.Adapter<NotaListAdapter.NotaViewHolder> {
+    private static ClickListener clickListener;
     private final LayoutInflater mInflater;
     private List<Nota> mNotas;
 
@@ -52,6 +53,10 @@ public class NotaListAdapter extends RecyclerView.Adapter<NotaListAdapter.NotaVi
         else return 0;
     }
 
+    public Nota getNotaPosition(int position){
+        return mNotas.get(position);
+    }
+
     class NotaViewHolder extends RecyclerView.ViewHolder {
         private final TextView rowTitulo;
         private final TextView rowDescricao;
@@ -63,10 +68,22 @@ public class NotaListAdapter extends RecyclerView.Adapter<NotaListAdapter.NotaVi
             rowTitulo = itemView.findViewById(R.id.titulo);
             rowDescricao = itemView.findViewById(R.id.descricao);
             rowTipo = itemView.findViewById(R.id.tipoDescricao);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickListener.onItemClick(view, getAdapterPosition());
+                }
+            });
         }
     }
 
-    public Nota getNotaPosition(int position){
-        return mNotas.get(position);
+    public void setOnItemClickListener(ClickListener clickListener) {
+        NotaListAdapter.clickListener = clickListener;
     }
+
+    public interface ClickListener {
+        void onItemClick(View v, int position);
+    }
+
+
 }

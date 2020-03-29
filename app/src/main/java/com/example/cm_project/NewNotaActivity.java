@@ -12,6 +12,8 @@ public class NewNotaActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY =
             "com.example.android.roomwordssample.REPLY";
+    public static final String EXTRA_REPLY_ID =
+            "com.android.example.roomwordssample.REPLY_ID";
 
     private  EditText editTitulo;
     private  EditText editDesc;

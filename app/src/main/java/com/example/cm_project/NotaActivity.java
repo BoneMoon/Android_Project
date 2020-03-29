@@ -27,6 +27,10 @@ public class NotaActivity extends AppCompatActivity {
     private NotaViewModel mNotaViewModel;
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int UPDATE_WORD_ACTIVITY_REQUEST_CODE = 2;
+
+    public static final String EXTRA_DATA_UPDATE_WORD = "extra_word_to_be_updated";
+    public static final String EXTRA_DATA_ID = "extra_data_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,21 @@ public class NotaActivity extends AppCompatActivity {
                     }
                 });
         helper.attachToRecyclerView(recyclerView);
+
+        adapter.setOnItemClickListener(new NotaListAdapter.ClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Nota nota = adapter.getNotaPosition(position);
+                launchUpdateNotaActivity(nota);
+            }
+        });
+    }
+
+    public void launchUpdateNotaActivity( Nota nota) {
+        Intent intent = new Intent(this, NewNotaActivity.class);
+        intent.putExtra(EXTRA_DATA_UPDATE_WORD, nota.getTitulo());
+        //intent.putExtra(EXTRA_DATA_ID, nota.getId());
+        startActivityForResult(intent, UPDATE_WORD_ACTIVITY_REQUEST_CODE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -91,10 +110,31 @@ public class NotaActivity extends AppCompatActivity {
             String titulo = nota[0];
             String descricao = nota[1];
             String tipo = nota[2];
+            int id = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
+
+            if(id != -1){
+                mNotaViewModel.updateNota(new Nota(titulo,descricao,tipo));
+            }
 
             Nota notaFinal = new Nota(titulo,descricao,tipo);
             mNotaViewModel.insert(notaFinal);
-        } else {
+        } else if(requestCode == UPDATE_WORD_ACTIVITY_REQUEST_CODE
+                && resultCode == RESULT_OK){
+            String[] nota = data.getStringArrayExtra(NewNotaActivity.EXTRA_REPLY);
+            String titulo = nota[0];
+            String descricao = nota[1];
+            String tipo = nota[2];
+            int id = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
+
+            if(id != -1){
+                mNotaViewModel.updateNota(new Nota(titulo,descricao,tipo));
+            } else {
+                Toast.makeText(this, "Não foi possivel fazer o update",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+
+        else {
             Toast.makeText(
                     getApplicationContext(),
                     "Nota não pode ser guardada, todos os campos têm que ser preenchidos",
