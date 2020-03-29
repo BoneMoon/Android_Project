@@ -89,7 +89,11 @@ public class NotaActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new NotaListAdapter.ClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+
+
                 Nota nota = adapter.getNotaPosition(position);
+
+
                 launchUpdateNotaActivity(nota);
             }
         });
@@ -99,6 +103,9 @@ public class NotaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewNotaActivity.class);
         intent.putExtra(EXTRA_DATA_UPDATE_NOTA, nota.getTitulo());
         intent.putExtra(EXTRA_DATA_ID, nota.getId());
+        String[] notaParams = {String.valueOf(nota.getId()), String.valueOf(nota.getTitulo()),
+                String.valueOf(nota.getDescricao()), String.valueOf(nota.getTipoDescricao())};
+        intent.putExtra("notaParams", notaParams);
         startActivityForResult(intent, UPDATE_WORD_ACTIVITY_REQUEST_CODE);
     }
 
@@ -118,15 +125,18 @@ public class NotaActivity extends AppCompatActivity {
 
             Nota notaFinal = new Nota(titulo,descricao,tipo);
             mNotaViewModel.insert(notaFinal);
+
         } else if(requestCode == UPDATE_WORD_ACTIVITY_REQUEST_CODE
                 && resultCode == RESULT_OK){
             String[] nota = data.getStringArrayExtra(NewNotaActivity.EXTRA_REPLY);
-            String titulo = nota[0];
-            String descricao = nota[1];
-            String tipo = nota[2];
-            int id = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
+            Integer id = Integer.valueOf(nota[0]);
+            String titulo = nota[1];
+            String descricao = nota[2];
+            String tipo = nota[3];
 
-            if(id != -1){
+            int ide = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
+
+            if(ide != -1){
                 mNotaViewModel.updateNota(new Nota(titulo,descricao,tipo));
             } else {
                 Toast.makeText(this, "Não foi possivel fazer o update",

@@ -20,13 +20,13 @@ public class NewNotaActivity extends AppCompatActivity {
     private  EditText editTitulo;
     private  EditText editDesc;
     private  EditText editTipo;
+    private Integer id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_nota);
-
-        int id = -1 ;
+        String[] nota = getIntent().getStringArrayExtra("notaParams");
 
         final Bundle extras = getIntent().getExtras();
 
@@ -35,20 +35,12 @@ public class NewNotaActivity extends AppCompatActivity {
         editTipo = findViewById(R.id.editTipo);
 
         if (extras != null) {
-            String nota = extras.getString(EXTRA_DATA_UPDATE_NOTA, "");
-            if (!nota.isEmpty()) {
+            String notas = extras.getString(EXTRA_DATA_UPDATE_NOTA, "");
+            if (!notas.isEmpty()) {
 
-                editTitulo.setText(nota);
-                editTitulo.setSelection(nota.length());
-                editTitulo.requestFocus();
-
-                editDesc.setText(nota);
-                editDesc.setSelection(nota.length());
-                editDesc.requestFocus();
-
-                editTipo.setText(nota);
-                editTipo.setSelection(nota.length());
-                editTipo.requestFocus();
+                editTitulo.setText(nota[1]);
+                editDesc.setText(nota[2]);
+                editTipo.setText(nota[3]);
             }
         }
 
@@ -66,19 +58,26 @@ public class NewNotaActivity extends AppCompatActivity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
 
+
                     String titulo = editTitulo.getText().toString();
                     String descricao = editDesc.getText().toString();
                     String tipo = editTipo.getText().toString();
                     String[] nota = {titulo,descricao, tipo};
 
                     replyIntent.putExtra(EXTRA_REPLY, nota);
-
-
                     setResult(RESULT_OK, replyIntent);
                 }
 
                 finish();
             }
         });
+    }
+
+    public void SetNotaValue(String[] notaParams){
+        editTitulo.setText(notaParams[1]);
+        editDesc.setText(notaParams[2]);
+        editTipo.setText(notaParams[3]);
+
+        id = Integer.valueOf(notaParams[0]);
     }
 }
