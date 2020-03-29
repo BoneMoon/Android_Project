@@ -29,7 +29,7 @@ public class NotaActivity extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_WORD_ACTIVITY_REQUEST_CODE = 2;
 
-    public static final String EXTRA_DATA_UPDATE_WORD = "extra_word_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_NOTA = "extra_nota_to_be_updated";
     public static final String EXTRA_DATA_ID = "extra_data_id";
 
     @Override
@@ -97,8 +97,8 @@ public class NotaActivity extends AppCompatActivity {
 
     public void launchUpdateNotaActivity( Nota nota) {
         Intent intent = new Intent(this, NewNotaActivity.class);
-        intent.putExtra(EXTRA_DATA_UPDATE_WORD, nota.getTitulo());
-        //intent.putExtra(EXTRA_DATA_ID, nota.getId());
+        intent.putExtra(EXTRA_DATA_UPDATE_NOTA, nota.getTitulo());
+        intent.putExtra(EXTRA_DATA_ID, nota.getId());
         startActivityForResult(intent, UPDATE_WORD_ACTIVITY_REQUEST_CODE);
     }
 
@@ -113,7 +113,7 @@ public class NotaActivity extends AppCompatActivity {
             int id = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
 
             if(id != -1){
-                mNotaViewModel.updateNota(new Nota(titulo,descricao,tipo));
+                mNotaViewModel.insert(new Nota(titulo,descricao,tipo));
             }
 
             Nota notaFinal = new Nota(titulo,descricao,tipo);

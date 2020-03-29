@@ -8,9 +8,9 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "Nota")
 public class Nota {
 
-    @PrimaryKey
-            /*(autoGenerate = true)
-    private int id;*/
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
 
     @NonNull
     @ColumnInfo(name = "titulo")
@@ -44,12 +44,12 @@ public class Nota {
         return this.tipoDescricao;
     }
 
-    /*public int getId() {
+    public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }*/
+    }
 }
 
