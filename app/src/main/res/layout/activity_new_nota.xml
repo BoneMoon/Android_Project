@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,28 +9,79 @@
     android:padding="24dp"
     tools:context=".NewNotaActivity">
 
-    <EditText
-        android:id="@+id/editTitulo"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_centerHorizontal="true"
+        android:text="NOTAS"
+        android:textColor="@color/Black"
+        android:textSize="60sp"
+        android:id="@+id/txtNota"/>
+
+
+    <TextView
+        android:layout_below="@+id/txtNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Titulo"
+        android:textColor="@color/Black"
+        android:textSize="40sp"
+        android:id="@+id/txtTitulo"/>
+
+    <EditText
+        android:id="@+id/editTitulo"
+        android:layout_below="@id/txtTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Introduzir Titulo"/>
+
+    <TextView
+        android:layout_below="@+id/editTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Descrição"
+        android:textColor="@color/Black"
+        android:textSize="40sp"
+        android:id="@+id/txtDesc"/>
 
     <EditText
         android:id="@+id/editDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduzir Descrição"
+        android:layout_below="@+id/txtDesc"/>
+
+    <TextView
+        android:layout_below="@+id/editDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Introduzir Descrição"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Tipo"
+        android:textColor="@color/Black"
+        android:textSize="40sp"
+        android:id="@+id/txtTipo"/>
 
     <EditText
+        android:layout_below="@+id/txtTipo"
         android:id="@+id/editTipo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Introduzir Tipo de Nota"/>
 
     <Button
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editTipo"
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text="Guardar"/>
 
-</LinearLayout>
+</RelativeLayout>
