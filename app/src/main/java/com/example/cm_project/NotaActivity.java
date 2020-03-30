@@ -1,5 +1,6 @@
 package com.example.cm_project;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -13,12 +14,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import adapters.NotaListAdapter;
 
@@ -89,11 +92,7 @@ public class NotaActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new NotaListAdapter.ClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-
-
                 Nota nota = adapter.getNotaPosition(position);
-
-
                 launchUpdateNotaActivity(nota);
             }
         });
@@ -101,8 +100,10 @@ public class NotaActivity extends AppCompatActivity {
 
     public void launchUpdateNotaActivity( Nota nota) {
         Intent intent = new Intent(this, NewNotaActivity.class);
+
         intent.putExtra(EXTRA_DATA_UPDATE_NOTA, nota.getTitulo());
         intent.putExtra(EXTRA_DATA_ID, nota.getId());
+
         String[] notaParams = {String.valueOf(nota.getId()), String.valueOf(nota.getTitulo()),
                 String.valueOf(nota.getDescricao()), String.valueOf(nota.getTipoDescricao())};
         intent.putExtra("notaParams", notaParams);
@@ -114,14 +115,15 @@ public class NotaActivity extends AppCompatActivity {
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String[] nota = data.getStringArrayExtra(NewNotaActivity.EXTRA_REPLY);
-            String titulo = nota[0];
-            String descricao = nota[1];
-            String tipo = nota[2];
-            int id = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
+            Integer id = Integer.valueOf(nota[0]);
+            String titulo = nota[1];
+            String descricao = nota[2];
+            String tipo = nota[3];
 
-            if(id != -1){
+
+            /*if(id != -1){
                 mNotaViewModel.insert(new Nota(titulo,descricao,tipo));
-            }
+            }*/
 
             Nota notaFinal = new Nota(titulo,descricao,tipo);
             mNotaViewModel.insert(notaFinal);
@@ -129,15 +131,27 @@ public class NotaActivity extends AppCompatActivity {
         } else if(requestCode == UPDATE_WORD_ACTIVITY_REQUEST_CODE
                 && resultCode == RESULT_OK){
             String[] nota = data.getStringArrayExtra(NewNotaActivity.EXTRA_REPLY);
-            Integer id = Integer.valueOf(nota[0]);
-            String titulo = nota[1];
-            String descricao = nota[2];
-            String tipo = nota[3];
+            Integer ide = Integer.valueOf(nota[0]);
+            final String titulo = nota[1];
+            final String descricao = nota[2];
+            final String tipo = nota[3];
 
-            int ide = data.getIntExtra(NewNotaActivity.EXTRA_REPLY_ID, -1);
-
+            Log.i("id", ide.toString());
             if(ide != -1){
-                mNotaViewModel.updateNota(new Nota(titulo,descricao,tipo));
+                final LiveData<Nota> oldnota = mNotaViewModel.getNotaId(ide);
+                oldnota.observe(this, new Observer<Nota>() {
+                    @Override
+                    public void onChanged(@Nullable Nota nota) {
+                        if(nota != null){
+                            nota.setTitulo(titulo);
+                            nota.setDescricao(descricao);
+                            nota.setTipoDescricao(tipo);
+                            mNotaViewModel.updateNota(nota);
+                            oldnota.removeObserver(this);
+                        }
+                    }
+                });
+
             } else {
                 Toast.makeText(this, "Não foi possivel fazer o update",
                         Toast.LENGTH_LONG).show();

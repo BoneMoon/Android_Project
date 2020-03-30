@@ -51,5 +51,17 @@ public class Nota {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setTitulo(@NonNull String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setDescricao(@NonNull String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setTipoDescricao(@NonNull String tipoDescricao) {
+        this.tipoDescricao = tipoDescricao;
+    }
 }
 

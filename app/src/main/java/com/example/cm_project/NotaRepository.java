@@ -36,6 +36,10 @@ public class NotaRepository {
         new updateNotaAsyncTask(notaDAO).execute(nota);
     }
 
+    public LiveData<Nota> getNotaID(int id){
+        return notaDAO.nota(id);
+    }
+
     private static class insertAsyncTask extends AsyncTask<Nota, Void, Void> {
         private NotaDAO mAsyncTaskDao;
 
@@ -89,4 +93,6 @@ public class NotaRepository {
             return null;
         }
     }
+
+
 }

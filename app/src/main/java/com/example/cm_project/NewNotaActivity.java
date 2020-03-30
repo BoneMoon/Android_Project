@@ -20,7 +20,7 @@ public class NewNotaActivity extends AppCompatActivity {
     private  EditText editTitulo;
     private  EditText editDesc;
     private  EditText editTipo;
-    private Integer id;
+    private Integer id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,12 @@ public class NewNotaActivity extends AppCompatActivity {
         editTitulo = findViewById(R.id.editTitulo);
         editDesc = findViewById(R.id.editDesc);
         editTipo = findViewById(R.id.editTipo);
+        id = -1;
 
         if (extras != null) {
             String notas = extras.getString(EXTRA_DATA_UPDATE_NOTA, "");
             if (!notas.isEmpty()) {
-
+                id = Integer.valueOf(nota[0]);
                 editTitulo.setText(nota[1]);
                 editDesc.setText(nota[2]);
                 editTipo.setText(nota[3]);
@@ -62,7 +63,7 @@ public class NewNotaActivity extends AppCompatActivity {
                     String titulo = editTitulo.getText().toString();
                     String descricao = editDesc.getText().toString();
                     String tipo = editTipo.getText().toString();
-                    String[] nota = {titulo,descricao, tipo};
+                    String[] nota = {id.toString(),titulo,descricao, tipo};
 
                     replyIntent.putExtra(EXTRA_REPLY, nota);
                     setResult(RESULT_OK, replyIntent);

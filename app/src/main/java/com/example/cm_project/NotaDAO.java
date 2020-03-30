@@ -30,4 +30,7 @@ public interface NotaDAO {
 
     @Update
     void update(Nota... nota);
+
+    @Query("SELECT * FROM  Nota WHERE id = :id")
+    LiveData<Nota>nota(int id);
 }

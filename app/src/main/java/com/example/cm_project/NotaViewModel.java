@@ -3,6 +3,7 @@ package com.example.cm_project;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -36,5 +37,9 @@ public class NotaViewModel extends AndroidViewModel {
 
     public void updateNota(Nota nota){
         mRepository.updateNota(nota);
+    }
+
+    public LiveData<Nota> getNotaId(int id){
+        return mRepository.getNotaID(id);
     }
 }
