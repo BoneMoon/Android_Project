@@ -177,7 +177,7 @@ public class NotaActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.deleteAll){
-            Toast.makeText(this, "Apagado as notas...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Apagando as notas...", Toast.LENGTH_SHORT).show();
 
             mNotaViewModel.deleteAll();
             return true;

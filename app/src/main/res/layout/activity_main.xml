@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="220dp"
-                android:text="ENTRAR"
+                android:text="@string/entrar"
                 android:textStyle="bold"
                 android:textSize="40sp"
                 android:textColor="@color/Black"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:layout_marginLeft="15dp"
-                android:text="Nome do Utilizador:"
+                android:text="@string/nome_do_utilizador"
                 android:textSize="15sp"
                 android:textColor="@color/Black"/>
 
@@ -59,7 +59,7 @@
                 android:layout_below="@+id/titulo"
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="5dp"
-                android:hint="Nome do Utilizador"
+                android:hint="@string/nome_do_utilizador"
                 android:textAlignment="center"/>
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:layout_marginLeft="15dp"
-                android:text="Palavra-Passe:"
+                android:text="@string/palavra_passe"
                 android:textSize="15sp"
                 android:textColor="@color/Black"/>
 
@@ -82,7 +82,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_below="@+id/editUtilizador"
                 android:inputType="textPassword"
-                android:hint="Palavra-Passe"
+                android:hint="@string/palavra_passe"
                 android:textAlignment="center"/>
 
             <Button
@@ -92,7 +92,7 @@
                 android:layout_below="@+id/editPasse"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="Entrar"
+                android:text="@string/entrarbtn"
                 android:textSize="20sp" />
 
             <Button
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Registar"
+                android:text="@string/registar"
                 android:textSize="20sp"
                 android:layout_below="@+id/btnEntrar"
                 />
@@ -113,7 +113,7 @@
                 android:layout_below="@+id/btnRegisto"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Notas Pessoais"
+                android:text="@string/notas_pessoais"
                 android:onClick="btnNotas"
                 android:textSize="20sp" />
         </RelativeLayout>

@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:layout_centerHorizontal="true"
-                android:text="NOTAS"
+                android:text="@string/notas"
                 android:textColor="@color/Black"
                 android:textSize="60sp"
                 android:id="@+id/txtNota"/>
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Titulo"
+                android:text="@string/titulo"
                 android:textColor="@color/Black"
                 android:textSize="40sp"
                 android:id="@+id/txtTitulo"/>
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:hint="Introduzir Titulo"/>
+                android:hint="@string/introduzir_titulo"/>
 
             <TextView
                 android:layout_below="@+id/editTitulo"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Descrição"
+                android:text="@string/descri_o"
                 android:textColor="@color/Black"
                 android:textSize="40sp"
                 android:id="@+id/txtDesc"/>
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
                 android:layout_below="@+id/txtDesc"
-                android:hint="Introduzir Descrição" />
+                android:hint="@string/introduzir_descri_o" />
 
             <TextView
                 android:layout_below="@+id/editDesc"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:text="Tipo"
+                android:text="@string/tipo"
                 android:textColor="@color/Black"
                 android:textSize="40sp"
                 android:id="@+id/txtTipo"/>
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtTipo"
                 android:layout_marginTop="22dp"
-                android:hint="Introduzir Tipo de Nota" />
+                android:hint="@string/introduzir_tipo_de_nota" />
 
             <Button
                 android:id="@+id/btnAdd"
@@ -89,7 +89,7 @@
                 android:layout_below="@+id/editTipo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:text="Guardar" />
+                android:text="@string/guardar" />
 
         </RelativeLayout>
     </ScrollView>
