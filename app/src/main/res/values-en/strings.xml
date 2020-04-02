@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CM_project</string>
+    <string name="title_activity_nota">NotaActivity</string>
+    <string name="entrar">WELCOME</string>
+    <string name="nome_do_utilizador">Username</string>
+    <string name="palavra_passe">Passord</string>
+    <string name="entrarbtn">Login</string>
+    <string name="registar">Register</string>
+    <string name="notas_pessoais">Personal Notes</string>
+    <string name="notas">NOTES</string>
+    <string name="titulo">Title</string>
+    <string name="introduzir_titulo">Insert Title </string>
+    <string name="descri_o">Description</string>
+    <string name="introduzir_descri_o">Insert Description</string>
+    <string name="tipo">Type</string>
+    <string name="introduzir_tipo_de_nota">Insert Type of note</string>
+    <string name="guardar">Save</string>
+    <string name="apagar">Delete </string>
+    <string name="apagarnotas">Delete all notes</string>
+    <string name="updatenao">Not possible to do update</string>
+    <string name="notanao">Note cannot be saved, all fields must be filled</string>
+    <string name="apagar_todas_as_notas">Delete all notes</string>
+</resources>

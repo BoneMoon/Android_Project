@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CM_project</string>
     <string name="title_activity_nota">NotaActivity</string>
-    <string name="entrar">ENTRAR</string>
+    <string name="entrar">BEM VINDO</string>
     <string name="nome_do_utilizador">Nome do Utilizador</string>
     <string name="palavra_passe">Palavra-Passe</string>
     <string name="entrarbtn">Entrar</string>
@@ -15,4 +15,9 @@
     <string name="tipo">Tipo</string>
     <string name="introduzir_tipo_de_nota">Introduzir Tipo de Nota</string>
     <string name="guardar">Guardar</string>
+    <string name="apagar">Apagar</string>
+    <string name="apagarnotas">Apagando as notas...</string>
+    <string name="updatenao">Não foi possivel fazer o update</string>
+    <string name="notanao">Nota não pode ser guardada, todos os campos têm que ser preenchidos</string>
+    <string name="apagar_todas_as_notas">Apagar todas as notas</string>
 </resources>

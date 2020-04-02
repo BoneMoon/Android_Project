@@ -5,6 +5,6 @@
     <item
         android:id="@+id/deleteAll"
         android:orderInCategory="100"
-        android:title="Apagar todas as notas"
+        android:title="@string/apagar_todas_as_notas"
         app:showAsAction="never" />
 </menu>

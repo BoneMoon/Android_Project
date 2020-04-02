@@ -81,7 +81,7 @@ public class NotaActivity extends AppCompatActivity {
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int diretion) {
                         int position = viewHolder.getAdapterPosition();
                         Nota mnota = adapter.getNotaPosition(position);
-                        Toast.makeText(NotaActivity.this, "Apagar " +
+                        Toast.makeText(NotaActivity.this, getResources().getString(R.string.apagar) +
                             mnota.getTitulo(), Toast.LENGTH_SHORT).show();
 
                         mNotaViewModel.deleteNota(mnota);
@@ -153,7 +153,7 @@ public class NotaActivity extends AppCompatActivity {
                 });
 
             } else {
-                Toast.makeText(this, "Não foi possivel fazer o update",
+                Toast.makeText(this, getResources().getString(R.string.updatenao),
                         Toast.LENGTH_LONG).show();
             }
         }
@@ -161,7 +161,7 @@ public class NotaActivity extends AppCompatActivity {
         else {
             Toast.makeText(
                     getApplicationContext(),
-                    "Nota não pode ser guardada, todos os campos têm que ser preenchidos",
+                    getResources().getString(R.string.notanao),
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -177,7 +177,7 @@ public class NotaActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.deleteAll){
-            Toast.makeText(this, "Apagando as notas...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.apagarnotas), Toast.LENGTH_SHORT).show();
 
             mNotaViewModel.deleteAll();
             return true;
