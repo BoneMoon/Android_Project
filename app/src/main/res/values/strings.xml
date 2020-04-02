@@ -20,4 +20,5 @@
     <string name="updatenao">Não foi possivel fazer o update</string>
     <string name="notanao">Nota não pode ser guardada, todos os campos têm que ser preenchidos</string>
     <string name="apagar_todas_as_notas">Apagar todas as notas</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
